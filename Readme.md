@@ -1,205 +1,349 @@
-# Wanderlust
 
-## General information about the project
+# 📘 Wanderlust
 
-### Project name  
-**Wanderlust**
+> *Сучасний веб-сервіс для планування подорожей, що дозволяє користувачам створювати персоналізовані маршрути, знаходити цікаві місця, досліджувати публічні маршрути інших користувачів та будувати власні маршрути на інтерактивній карті.*
 
-### Project description  
-Wanderlust is a modern web-based travel planning service that allows users to create personalized itineraries, find interesting places, explore other users' public itineraries, and build their own routes on an interactive map.
+---
 
-The platform is designed for ordinary travelers and travel agencies, providing everyone with tools for convenient travel planning and organization.
+## 👤 Автор
 
-### Main features  
-1. **Authorization and Registration**  
-   - Registration with role selection:  
-     - `User` (regular user).  
-     - `Agency` (travel agency).  
+- **ПІБ**: Мандзюк Анастасія
+- **Група**: ФЕІ-44
+- **Керівник**: доц.Павлик Михайло Романович
+- **Дата виконання**: [15.05.2025]
 
-2. **Functionality for different roles**  
-   - **User:**  
-     - Creating, editing, deleting routes.  
-     - View created routes.  
-     - Search for interesting places to add to routes using the following criteria:  
-       - Name.  
-       - Category.  
-       - Location.  
-     - Search and filter public routes.  
-     - Saving public routes to personal ones, making changes to them.  
-     - Exploring interesting places.  
-     - Building routes on an interactive map.  
-   - **Agency (travel agency):**  
-     - Create, edit, delete public routes.  
-     - View created routes.  
-     - Search for interesting places to add to routes by criteria:  
-       - Name.  
-       - Category.  
-       - Location.  
-   - **Admin (administrator):**  
-     - The functionality has not yet been developed.  
+---
 
-### Project technologies  
-- **Frontend:** React TypeScript, Vite, Tailwind CSS, Redux Toolkit.  
-- **Backend:** Node.js (TypeScript), SQLite.  
+## 📌 Загальна інформація
 
-### Third-party APIs  
-- **OpenTripMap API:** For searching for interesting places such as tourist attractions, landmarks or places to relax.  
-  Documentation: https://dev.opentripmap.org/product  
-- **Google Maps API:** For accurate route planning and construction.  
-  Documentation: https://rapidapi.com/gmapplatform/api/google-map-places/  
+- **Тип проєкту**: Веб-сервіс
+- **Мова програмування**: TypeScript
+- **Фреймворки / Бібліотеки**:
+    - **Frontend**: React, Vite, Tailwind CSS, Redux Toolkit
+    - **Backend**: Node.js
+- **База даних**: SQLite
+- **GitHub**: frontend (https://github.com/NaStia7777/wanderlust), backend (https://github.com/NaStia7777/wanderlust-server/tree/main)
+- **Сторонні API**:
+    - OpenTripMap API (для пошуку цікавих місць)
+    - Google Maps API (для планування маршрутів)
+- **Інтерактивна карта**:
+    - `react-leaflet` (для інтеграції карти)
+    - `Cargo` (для обробки геоданих та візуалізації маршрутів)
+- **Призначення**: Wanderlust розроблений для мандрівників, які бажають зручно організувати свої поїздки, а також для туристичних агенцій, що прагнуть ділитися маршрутами та пропонувати готові рішення клієнтам.
+- **Цільова аудиторія**:  мандрівники, туристичні агенції.
+- **Унікальність проєкту**: Wanderlust поєднує можливість створення персоналізованих маршрутів, інтеграцію з картою та розширені функції пошуку, що робить його ідеальним інструментом для планування подорожей.
 
-### Interactive map  
-- `react-leaflet`: For integrating a map into a web application.  
-- `Cargo`: For improved geodata processing and route visualization.  
+---
 
-### Purpose  
-Wanderlust is designed for travelers who want to conveniently organize their trips, as well as for travel agencies who want to share their itineraries and offer ready-made solutions to their clients.
+## 🧠 Опис функціоналу
 
-### Target audience  
-- Individual travelers.  
-- Travel agencies.  
+### 🔐 Реєстрація та авторизація користувачів
+- Реєстрація з вибором ролі:
+    - `User` (звичайний користувач)
+    - `Agency` (туристичне агентство)
 
-### Uniqueness of the project  
-Wanderlust combines the ability to create personalized itineraries, map integration, and advanced search features to create the perfect travel tool, whether for beginners or experienced travelers or agencies.
+### 💡 Функціонал для різних ролей
 
-## Project settings
+- **Користувач (User):**
+    - Створення, редагування, видалення маршрутів.
+    - Перегляд створених маршрутів.
+    - Пошук цікавих місць для додавання до маршрутів за критеріями: Назва, Категорія, Розташування.
+    - Пошук та фільтрація публічних маршрутів.
+    - Збереження публічних маршрутів до особистих з можливістю внесення змін.
+    - Дослідження цікавих місць.
+    - Побудова маршрутів на інтерактивній карті.
 
-### General requirements  
-To deploy the Wanderlust project, you need to configure environment variables on the frontend and backend, ensure correct integration with the API, and start the server and client side.
+- **Агентство (Agency):**
+    - Створення, редагування, видалення публічних маршрутів.
+    - Перегляд створених маршрутів.
+    - Пошук цікавих місць для додавання до маршрутів за критеріями: Назва, Категорія, Розташування.
 
-1. **Environment variables (.env file):**  
-   Create a `.env` file in the backend root directory and add the following variables:  
-   ```env
-   JWT_SECRET=your_jwt_secret # Secret key for JWT generation
-   PORT=8080 # Port to run the backend
-   ```
-   The secret key for JWT generation can be generated at https://jwtsecret.com/generate  
+---
 
-2. **Connecting environment variables:**  
-    On the backend, environment variables are available through the `dotenv` library. For example:
+## 🧱 Опис основних класів / файлів
+
+| Клас / Файл        | Призначення                                       |
+|--------------------|---------------------------------------------------|
+| `public/`          | Директорія для статичних файлів.                  |
+| `src/`             | Основна директорія для frontend.                  |
+| `src/components/`  | Компоненти, що використовуються в застосунку.     |
+| `src/data/`        | Дані або константи, що використовуються на frontend. |
+| `src/hooks/`       | Власні React хуки.                                |
+| `src/models/`      | TypeScript типи та інтерфейси.                    |
+| `src/pages/`       | Сторінки застосунку.                              |
+| `src/store/`       | Глобальний стан застосунку (Redux Toolkit).       |
+| `src/store/api/`   | Логіка для взаємодії з API.                       |
+| `src/store/slices/`| Redux slices для керування станом.                |
+| `src/store/index.ts`| Налаштування Redux store.                         |
+| `src/App.tsx`      | Головний файл застосунку.                         |
+| `src/main.tsx`     | Точка входу для рендерингу React застосунку.     |
+| `.env`             | Файл змінних оточення для frontend.               |
+| `package.json`     | Конфігурація Node.js проєкту з залежностями.     |
+| `vite.config.ts`   | Конфігурація Vite для проєкту.                    |
+| `tailwind.config.js`| Конфігурація Tailwind CSS.                       |
+| `tsconfig.json`    | Конфігурація TypeScript для проєкту.             |
+
+---
+
+## ▶️ Як запустити проєкт "з нуля"
+
+### 1. Встановлення інструментів
+
+- Node.js v22.15.1 npm v10.9.2
+
+### 2.  Встановлення залежностей
+
+```bash
+# Backend
+cd backend
+npm install
+
+# Frontend
+cd ../frontend
+npm install
+```
+
+### 4. Створення `.env` файлів
+
+#### Для backend:
+
+```
+JWT_SECRET=your_jwt_secret # Secret key for JWT generation
+PORT=8080 # Port to run the backend
+DATABASE_URL=./data.db # Path to the SQLite database file
+```
+Змінні середовища на backend доступні через бібліотеку `dotenv`:
+
     ```ts
     import dotenv from 'dotenv';
     dotenv.config();
     const jwtSecret = process.env.JWT_SECRET;
-    ```
-
-## Routes for authorization and authentication
-
-### POST /auth/login  
-Used for user login.  
-
-### POST /auth/register  
-Used to register a new user.  
-
-### POST /auth/refresh  
-Used to refresh the access token.  
-
-## Routes for categories and points of interest
-
-### GET /categories/  
-Get a list of available categories.  
-
-### GET /destinations/  
-Getting a list of interesting places to explore.  
-
-## Routes for working with routes
-
-### POST /routes/create/  
-Creating a new route.  
-
-### DELETE /routes/delete/:id  
-Deleting a route by its ID.  
-
-### PUT /routes/edit/  
-Editing an existing route.  
-
-### GET /routes/get/  
-Getting all user routes.  
-
-### GET /routes/id/:id  
-Getting information about a route by its ID.  
-
-### GET /routes/public/:id  
-Obtaining information about a public route by its ID.  
-
-### GET /routes/public/  
-Get a list of all public routes.  
-
-
-## Commands to run the backend
-
-### Installing dependencies
-```bash
-npm install
 ```
-### Starting the server:
+
+### 5. Запуск
+
 ```bash
+# Backend
+cd backend
 npm start
+
+# Frontend
+cd ../frontend
+npm run dev
 ```
-### The backend runs on port: http://localhost:8080
 
-## Project structure
+---
 
-* **src**  
-  Main directory for the backend, containing all core project modules.
+## 🔌 API приклади
 
-  * **config**  
-    Directory for project configuration.
-    * **database.ts**  
-      Module for connecting to the database (SQLite).
-    * **jwt.ts**  
-      Module for working with JWT (token generation settings, signature verification, etc.).
-  
-  * **controllers**  
-    Directory for request handlers (route logic).
-    * **auth.ts**  
-      Controller for user authentication.
-  
-  * **data**  
-    Directory for storing test or static data used in the project.
-    * **admin.ts**  
-      Static data for admin.
-    * **categories.ts**  
-      Data for categories.
-    * **destinations.ts**  
-      Data for interesting places.
-  
-  * **middleware**  
-    Directory for middleware handlers.
-    * **auth.ts**  
-      Middleware for authentication token verification.
-    * **validate.ts**  
-      Middleware for validating request data.
-  
-  * **routes**  
-    Directory for API routes.
-    * **auth.ts**  
-      Routes for authentication (/auth).
-    * **categories.ts**  
-      Routes for categories (/categories).
-    * **destinations.ts**  
-      Routes for interesting places (/destinations).
-    * **routes.ts**  
-      Routes for managing routes (/routes).
-  
-  * **index.ts**  
-    Main file that gathers all routes.
+### 🔐 Авторизація
 
-* **.env**  
-  Environment variables file.
+**POST /api/auth/login**
+Використовується для входу користувача.
 
-* **data.db**  
-  SQLite database file.
+```json
+{
+  "email": "user123@gmail.com",
+  "password": "user123"
+}
+```
 
-* **nodemon.json**  
-  Configuration for automatic server restart during development.
+**POST /auth/register**
+Використовується для реєстрації нового користувача.
 
-* **package.json**  
-  Node.js project configuration with dependencies.
+```json
+{
+  "email": "newuser@example.com",
+  "password": "newpassword",
+  "role": "User" // or "Agency"
+}
 
-* **tsconfig.json**  
-  TypeScript configuration for the project.
+```
+**GET /categories/**
+Отримати список доступних категорій.
+Response:
 
-## Database
+```json
+[
+  { "id": 1, "name": "Museums" },
+  { "id": 2, "name": "Parks" }
+]
+```
 
-![Database](./images/database.png)
+**GET /destinations/**
+Отримати список цікавих місць для дослідження.
+Response:
+
+```json
+[
+  { "id": 1, "name": "Eiffel Tower", "location": "Paris", "category": "Landmark" },
+  { "id": 2, "name": "Central Park", "location": "New York", "category": "Park" }
+]
+```
+
+**POST /routes/create/**
+Створення нового маршруту.
+
+```json
+
+{
+  "url": "optional_url",
+  "name": "Назва Маршруту",
+  "destinations": "Місто А, Місто Б",
+  "duration": "5 днів",
+  "price": 1500,
+  "places": "[]",
+  "routes": "[]",
+  "backtrack": false,
+  "coordinates": "{}",
+  "start": "Початкова точка",
+  "ispublic": false,
+  "startdate": "2025-07-01"
+}
+```
+
+**DELETE /routes/delete/:id**
+Видалення маршруту за його ID.
+Request: DELETE /routes/delete/123
+
+
+**PUT /routes/edit/**
+Редагування існуючого маршруту.
+
+```json
+{
+  "id": 123,
+  "url": "updated_optional_url",
+  "name": "Оновлена Назва Маршруту",
+  "destinations": "Місто В, Місто Г",
+  "duration": "7 днів",
+  "price": 2000,
+  "places": "[\"place_id_1\", \"place_id_2\"]",
+  "routes": "[\"route_segment_1\", \"route_segment_2\"]",
+  "backtrack": true,
+  "coordinates": "{\"lat\": 49.84, \"lng\": 24.02}",
+  "start": "Нова початкова точка",
+  "ispublic": true,
+  "startdate": "2025-08-15"
+}
+```
+
+**GET /routes/get/**
+Отримання всіх маршрутів користувача.
+Response:
+```json
+{
+  "routes": [
+    {
+      "id": 1,
+      "user_id": 101,
+      "url": "",
+      "name": "Маршрут до Карпат",
+      "destinations": "Яремче, Буковель",
+      "duration": "3 дні",
+      "price": 3000,
+      "places": "[]",
+      "routes": "[]",
+      "backtrack": 0,
+      "coordinates": "",
+      "start": "",
+      "ispublic": 0,
+      "startdate": "2025-07-20"
+    }
+  ],
+  "pages": 1
+}
+```
+
+**GET /routes/id/:id**
+Отримання інформації про маршрут за його ID.
+Request: GET /routes/id/123
+Response:
+```json
+{
+  "id": 123,
+  "user_id": 101,
+  "url": "",
+  "name": "Карпати",
+  "destinations": "Яремче, Буковель",
+  "duration": "3 дні",
+  "price": 3000,
+  "places": "[]",
+  "routes": "[]",
+  "backtrack": 0,
+  "coordinates": "",
+  "start": "",
+  "ispublic": 0,
+  "startdate": "2025-07-20"
+}
+```
+
+**GET /routes/public/:id**
+Отримання інформації про публічний маршрут за його ID.
+Request: GET /routes/public/456
+(аналогічно до попереднього)
+---
+
+## 🖱️ Інструкція для користувача
+
+1. **Головна сторінка** — містить загальну інформацію про сервіс та кнопки для початку роботи:
+   - `🔐 Увійти` — дозволяє авторизуватись існуючому користувачу
+   - `📝 Зареєструватись` — дає можливість створити новий профіль, обравши роль (User - звичайний користувач або Agency - туристичне агентство).
+
+2. **Після входу**:
+   Після входу (для користувача з роллю User):
+
+- На домашній сторінці ви можете переглядати та керувати своїми маршрутами.
+- Створення маршруту:
+  - Кнопка "Створити маршрут" відкриває форму для створення нового персоналізованого маршруту. Під час створення маршруту ви можете:
+    - Додавати цікаві місця, використовуючи пошук за назвою, категорією або розташуванням.
+    - Будувати маршрут на інтерактивній карті.
+    - Вказувати тривалість, бюджет, дати та інші деталі.
+- Управління маршрутами:
+  - Кнопка "Редагувати" навпроти існуючого маршруту дозволяє змінити його деталі.
+  - Кнопка "Видалити" — повністю видаляє обраний маршрут з вашого списку.
+- Дослідження:
+  - Перейдіть до розділу "Дослідження", щоб знайти цікаві місця та додати їх до своїх маршрутів.
+- Публічні маршрути:
+  - Перейдіть до розділу "Пошук", щоб переглядати та фільтрувати публічні маршрути, створені агентствами.
+  - Знайдений публічний маршрут можна зберегти до особистих з подальшою можливістю його редагування.
+
+  Після входу (для користувача з роллю Agency):
+
+- На домашній сторінці ви можете створювати та керувати публічними маршрутами, які будуть доступні для всіх користувачів.
+- Створення публічного маршруту:
+  - Кнопка "Створити маршрут" дозволяє створити новий публічний маршрут, який може бути відкритий для перегляду іншими.
+  - Під час створення ви також можете додавати місця та будувати маршрут на карті.
+- Управління публічними маршрутами:
+  - Кнопка "Редагувати" дозволяє вносити зміни до ваших публічних маршрутів.
+  - Кнопка "Видалити" — видаляє публічний маршрут.
+---
+
+## 🧪 Проблеми і рішення
+
+| Проблема              | Рішення                            |
+|----------------------|------------------------------------|
+| 500 Internal Server Error | Перевірити запуск backend (`npm start`), `DATABASE_URL` в `.env` (доступ до `data.db`), логі backend |
+| CORS помилка         | Увімкнути CORS middleware у backend, переконатися, що `http://localhost:5173` дозволено |
+| Проблеми зі збереженням/отриманням даних | Перевірити підключення до SQLite, SQL-запити backend, валідність даних з frontend, JWT токени для захищених маршрутів |
+| Проблеми з відображенням карти | Перевірити ключі `VITE_GOOGLEMAP_APIKEY`/`VITE_OPENTRIPMAP_APIKEY` в `.env`, дійсність ключів та дозволи, `react-leaflet`/`Cargo` |
+| Проблеми з авторизацією/автентифікацією | Перевірити `JWT_SECRET` в `.env`, терміни дії токенів (`VITE_ACCESS_EXP`, `VITE_REFRESH_EXP`) |
+| Невідповідність даних `places`/`routes` | Перевірити коректність збереження/зчитування JSON-рядків `places`/`routes` з БД, переконатися, що frontend правильно перетворює JSON-рядки|
+---
+
+## 🧾 Використані джерела / література
+
+- [React офіційна документація](https://react.dev/documentation)
+- [Vite документація](https://vitejs.dev/guide/)
+- [Tailwind CSS документація](https://tailwindcss.com/docs)
+- [Redux Toolkit документація](https://redux-toolkit.js.org/introduction/overview)
+- [Node.js](https://nodejs.org/docs/latest/api/)
+- [SQLite документація](https://www.sqlite.org/docs.html)
+- [OpenTripMap API](https://dev.opentripmap.org/product)
+- [Google Maps API](https://developers.google.com/maps/documentation)
+- [react-leaflet](https://react-leaflet.js.org/)
+
+---
+
+
+
