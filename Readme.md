@@ -22,7 +22,7 @@
     - **Frontend**: React, Vite, Tailwind CSS, Redux Toolkit
     - **Backend**: Node.js
 - **База даних**: SQLite
-- **GitHub**: frontend (https://github.com/NaStia7777/wanderlust), backend (https://github.com/NaStia7777/wanderlust-server/tree/main)
+- **GitHub**: frontend (https://github.com/NaStia7777/wanderlust), backend (https://github.com/NaStia7777/wanderlust-server)
 - **Сторонні API**:
     - OpenTripMap API (для пошуку цікавих місць)
     - Google Maps API (для планування маршрутів)
